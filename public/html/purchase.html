@@ -1,0 +1,423 @@
+    {{define "purchase"}}
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+        body {
+        margin: 0;
+        box-sizing: border-box;
+        background-color: #ffffff;
+        }
+
+        .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f5f5f5;
+        }
+
+        .header .logo {
+        font-size: 25px;
+        font-family: 'Poppins', cursive;
+        color: #000;
+        text-decoration: none;
+        margin-left: 30px;
+        }
+
+        .nav-items {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #f5f5f5;
+        margin-right: 20px;
+        }
+
+        .nav-items a {
+        text-decoration: none;
+        color: #000;
+        padding: 35px 20px;
+        }
+
+        /* CSS for main element */
+        .intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 520px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1031&q=80");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        }
+
+        .intro h1 {
+        font-family: sans-serif;
+        font-size: 60px;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 0;
+        }
+
+        .intro p {
+        font-size: 20px;
+        color: #d1d1d1;
+        text-transform: uppercase;
+        margin: 20px 0;
+        }
+
+        .intro button {
+        background-color: #ffffff;
+        color: #ad6c6c;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4)
+        }
+
+        .achievements {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 40px 80px;
+        }
+
+        .achievements .work {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 40px;
+        }
+
+        .achievements .work i {
+        width: fit-content;
+        font-size: 50px;
+        color: #333333;
+        border-radius: 50%;
+        border: 2px solid #333333;
+        padding: 12px;
+        }
+
+        .achievements .work .work-heading {
+        font-size: 20px;
+        color: #333333;
+        text-transform: uppercase;
+        margin: 10px 0;
+        }
+
+        .achievements .work .work-text {
+        font-size: 15px;
+        color: #585858;
+        margin: 10px 0;
+        }
+
+        .about-me {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 80px;
+        border-top: 2px solid #eeeeee;
+        }
+
+        .about-me img {
+        width: 500px;
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        }
+
+        .about-me-text h2 {
+        font-size: 30px;
+        color: #333333;
+        text-transform: uppercase;
+        margin: 0;
+        }
+
+        .about-me-text p {
+        font-size: 15px;
+        color: #585858;
+        margin: 10px 0;
+        }
+
+        /* CSS for footer */
+        .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ad6c6c;
+        padding: 40px 80px;
+        }
+
+        .footer .copy {
+        color: #ffffff;
+        }
+
+        .bottom-links {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 40px 0;
+        }
+
+        .bottom-links .links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 40px;
+        }
+
+        .bottom-links .links span {
+        font-size: 20px;
+        color: #ffffff;
+        text-transform: uppercase;
+        margin: 10px 0;
+        }
+
+        .bottom-links .links a {
+        text-decoration: none;
+        color: #ffffff;
+        padding: 10px 20px;
+        }
+
+        .stock-list {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding: 40px 80px;
+        gap: 20px;
+        }
+
+        .stock {
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        padding: 20px;
+        width: calc(33.33% - 20px); /* Для трех колонок на ширине страницы */
+        box-sizing: border-box;
+        }
+
+        .stock img {
+        width: 100%;
+        height: 200px; /* Фиксированная высота изображения */
+        object-fit: cover; /* Сохранение пропорций с обрезкой */
+        border-radius: 5px;
+        margin-bottom: 10px;
+        }
+
+        .stock h3 {
+        font-size: 24px;
+        color: #333333;
+        margin: 5px 0;
+        }
+
+        .stock p {
+        font-size: 16px;
+        color: #585858;
+        margin: 5px 0;
+        }
+
+        .stock button {
+        background-color: #ad6c6c;
+        color: #ffffff;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.4);
+        }
+
+    </style>
+    </head>
+
+    <body>
+    <header class="header">
+        <a href="/" class="logo"> DinnerTime</a>
+        <nav class="nav-items">
+            <a href="/purchase">Записи</a>
+            <a href="/profil">Профиль</a>
+        </nav>
+    </header>
+
+
+    <main>
+        <section class="stock-list">
+            <div class="stock">
+                <img src="https://sloosh.ru/upload/003/u383/b/c/655b8b5c.jpg" alt="Stock Image">
+                <h3>Горячий багет с овощами и сыром</h3>
+                <p>Описание акции:
+                    <li>Багет - 4 шт. (по 120 г)</li>
+                    <li>Хумус - 230 г</li> 
+                    <li>Перец болгарский красный (резаный полосками) - 1 стакан<</li>
+                    <li>Перец чили зеленый (резаный полосками) - 1 стакан</li>
+                    <li>Сыр Проволоне - 4 ломтика (по 15 г)</li>
+                    <li>Чеснок (резаный пластинами) - 3 зубка</li>
+                    <li>Масло оливковое - 1 ст. л.</li>
+                    <li>Лук репчатый (резаный полосками) - 1 стакан<</li>
+                    <li>Красный молотый перец - 1/4 ч. л.</li>
+                    <li>Черный молотый перец - 1/4 ч. л.</li>
+                </p>
+                <p>Калорийность: 320кл на 1 порцию</p>
+                <button onclick="buyStock('Горячий багет с овощами и сыром')">Записать</button>
+            </div>
+            
+            <div class="stock">
+                <img src="http://cdn.taste.com.au/images/recipes/agt/2008/05/19572.jpg" alt="Stock Image">
+                <h3>Салат с курицей, грушей и огурцом</h3>
+                <p>Описание акции:
+                    <li>Куриная грудка (без кожи) - 200 г</li>
+                    <li>Груша - 1 шт.</li> 
+                    <li>Огурец свежий, средний - 1 шт.<</li>
+                    <li>Лук репчатый красный - 1 шт.</li>
+                    <li>Перец чили свежий (для украшения) - по вкусу</li>
+                    <li>Масло растительное - 1 ст. л.</li>
+                    <li>Соевый соус - 1 ст. л.</li>
+                    <li>Сок лимона - 1 ч. л.<</li>
+                    <li>Горчица (русская) - 1 ч. л.</li>
+                    <li>Соль - по вкусу</li>
+                </p>
+                <p>Калорийность: 240кл на 1 порцию</p>
+                <button onclick="buyStock('Салат с курицей, грушей и огурцом')">Записать</button>
+            </div>
+
+            <div class="stock">
+                <img src="https://static.dir.bg/uploads/images/2012/05/10/882041/768x432.jpg" alt="Stock Image">
+                <h3>Открытый пирог "Импровизация"</h3>
+                <p>Описание акции:
+                    <li>Слоеное тесто - 300 г.</li>
+                    <li>Лук - 1/2 шт.</li> 
+                    <li>Домашние колбаски (или фарш) - 200 г.<</li>
+                    <li>Цуккини - 1 шт.</li>
+                    <li>Картофель - 1-2 шт.</li>
+                    <li>Творог - 150 г</li>
+                    <li>Масло сливочное - 25 г.</li>
+                    <li>Перец черный молотый<</li>
+                    <li>Соль по вкусу</li>
+                    <li>Мускатный орех</li>
+                </p>
+                <p>Калорийность: 344кл на 1 порцию</p>
+                <button onclick="buyStock('Открытый пирог Импровизация')">Записать</button>
+            </div>
+            
+            <div class="stock">
+                <img src="https://image1.thematicnews.com/uploads/topics/preview/00/03/03/33/5605d39977.jpg" alt="Stock Image">
+                <h3>Борщ с баклажанами и говядиной</h3>
+                <p>Описание акции:
+                    <li>Говядина/телятина (мякоть) - 300 г</li>
+                    <li>Свёкла - 250 г</li> 
+                    <li>Баклажаны - 300 г</li>
+                    <li>Капуста - 200 г</li>
+                    <li>Помидоры - 200 г</li>
+                    <li>Перец болгарский - 150 г</li>
+                    <li>Картофель - 250 г</li>
+                    <li>Морковь - 100 г</li>
+                    <li>Томатная паста - 40 г</li>
+                    <li>Лавровый лист - 2 шт.</li>
+                </p>
+                <p>Калорийность: 400кл на 1 порцию</p>
+                <button onclick="buyStock('Борщ с баклажанами и говядиной')">Записать</button>
+            </div>
+
+            <div class="stock">
+                <img src="https://img.youtube.com/vi/gJhdtaIztBE/maxresdefault.jpg" alt="Stock Image">
+                <h3>Слоёный салат из свёклы с сыром</h3>
+                <p>Описание акции:
+                    <li>Свёкла - 415 г (1 шт. )</li>
+                    <li>Яйца - 2 шт.</li> 
+                    <li>Сыр плавленый - 70 г<</li>
+                    <li>Майонез - 80 г</li>
+                    <li>Чеснок - 8 г (2 зубчика)</li>
+                    <li>Орехи грецкие - 30 г</li>
+                    <li>Соль - 1/4 ч. ложки</li>
+                    <li>Перец чёрный молотый - 1/8 ч. ложки</li>
+                </p>
+                <p>Калорийность: 253кл на 1 порцию</p>
+                <button onclick="buyStock('Слоёный салат из свёклы с сыром')">Записать</button>
+            </div>
+            
+            <div class="stock">
+                <img src="https://vellamonik.files.wordpress.com/2016/03/ojuux70k014.jpg" alt="Stock Image">
+                <h3>Запеченный Лосось с апельсиновой глазурью</h3>
+                <p>Описание акции:
+                    <li>Филе лосося без шкурки свежее или замороженное - 1 шт. (900 г)</li>
+                    <li>Апельсиновый джем - 3/4 стакана</li> 
+                    <li>Лук зеленый (резаный) - 1/4 стакана (по желанию)</li>
+                    <li>Белое сухое вино - 2 ч. л.</li>
+                    <li>Имбирь свежий (измельченный) - 1 ч. л.</li>
+                    <li>Дижонская горчица - 1 ч. л.</li>
+                    <li>Чеснок (измельченный) - 1 зубок</li>
+                    <li>Красный молотый перец - 1/4 ч. л.</li>
+                    <li>Смесь пяти специй - 1/8 ч. л.</li>
+                    <li>Миндальные лепестки (жареные) - 3 ст. л.</li>
+                </p>
+                <p>Калорийность: 378кл на 1 порцию</p>
+                <button onclick="buyStock('Запеченный Лосось с апельсиновой глазурью')">Записать</button>
+            </div>
+
+        
+
+        </section>
+
+        <script>
+            function buyStock(stockName, description) {
+                let purchasedStocks = JSON.parse(localStorage.getItem('purchasedStocks')) || [];
+                
+                // Проверяем, есть ли уже эта акция в списке покупок
+                const existingStock = purchasedStocks.find(stock => stock.name === stockName);
+                if (existingStock) {
+                    // Если акция уже куплена, увеличиваем ее количество
+                    existingStock.quantity += 1;
+                } else {
+                    // Если акции еще нет в списке покупок, добавляем новую запись
+                    purchasedStocks.push({ name: stockName, desc: description, quantity: 1 });
+                }
+                
+                // Обновляем локальное хранилище
+                localStorage.setItem('purchasedStocks', JSON.stringify(purchasedStocks));
+        
+                // Всплывающее окно о покупке акции
+                alert(`Блюдо "${stockName}" попробовано!`);
+            }
+        </script>
+
+    </main>
+
+    <br>
+    <br>
+
+    <footer class="footer">
+        <div class="copy">&copy; 2023 Moiseenkova V.V.</div>
+        <div class="bottom-links">
+        <div class="links">
+            <span>Навигация</span>
+                <a href="/purchase">Записи</a>
+                <a href="/profil">Профиль</a>
+        </div>
+        <div class="links">
+            <span>Ссылки</span>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        </div>
+    </footer>
+    </body>
+
+    </html>
+    {{end}}
