@@ -46,7 +46,7 @@
         padding: 35px 20px;
         }
 
-        /* CSS for main element */
+        /* MAIN */
         .intro {
         display: flex;
         flex-direction: column;
@@ -153,7 +153,7 @@
         margin: 10px 0;
         }
 
-        /* CSS for footer */
+        /* FOOTER */
         .footer {
         display: flex;
         justify-content: space-between;
@@ -207,14 +207,14 @@
         background-color: #f5f5f5;
         border-radius: 10px;
         padding: 20px;
-        width: calc(33.33% - 20px); /* Для трех колонок на ширине страницы */
+        width: calc(33.33% - 20px); 
         box-sizing: border-box;
         }
 
         .stock img {
         width: 100%;
-        height: 200px; /* Фиксированная высота изображения */
-        object-fit: cover; /* Сохранение пропорций с обрезкой */
+        height: 200px; 
+        object-fit: cover; 
         border-radius: 5px;
         margin-bottom: 10px;
         }
@@ -378,20 +378,16 @@
             function buyStock(stockName, description) {
                 let purchasedStocks = JSON.parse(localStorage.getItem('purchasedStocks')) || [];
                 
-                // Проверяем, есть ли уже эта акция в списке покупок
                 const existingStock = purchasedStocks.find(stock => stock.name === stockName);
                 if (existingStock) {
-                    // Если акция уже куплена, увеличиваем ее количество
+
                     existingStock.quantity += 1;
                 } else {
-                    // Если акции еще нет в списке покупок, добавляем новую запись
                     purchasedStocks.push({ name: stockName, desc: description, quantity: 1 });
                 }
                 
-                // Обновляем локальное хранилище
                 localStorage.setItem('purchasedStocks', JSON.stringify(purchasedStocks));
         
-                // Всплывающее окно о покупке акции
                 alert(`Блюдо "${stockName}" попробовано!`);
             }
         </script>

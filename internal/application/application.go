@@ -209,14 +209,13 @@ func (a app) Profil(rw http.ResponseWriter, r *http.Request, p httprouter.Params
 				http.Error(rw, err.Error(), http.StatusInternalServerError)
 				return
 			}
-			userAbout = "" // Присваиваем пустую строку, чтобы избежать ошибки отображения
+			userAbout = "" 
 		} else {
 			http.Error(rw, err.Error(), http.StatusInternalServerError)
 			return
 		}
 	}
 
-	// Составление данных для передачи в шаблон
 	type ProfileData struct {
 		Name  string
 		Email string
@@ -231,7 +230,6 @@ func (a app) Profil(rw http.ResponseWriter, r *http.Request, p httprouter.Params
 
 	// Обработка POST-запроса для сохранения информации о пользователе
 	if r.Method == http.MethodPost {
-		// Получение нового значения поля "О себе" из тела запроса
 		type AboutRequest struct {
 			About string `json:"about"`
 		}
@@ -242,18 +240,15 @@ func (a app) Profil(rw http.ResponseWriter, r *http.Request, p httprouter.Params
 			return
 		}
 
-		// Сохранение нового значения поля "О себе" в базе данных в таблице user_info
 		err := a.repo.UpdateAbout(a.ctx, userID, aboutReq.About)
 		if err != nil {
 			http.Error(rw, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		// Обновление данных о пользователе для отображения
 		data.About = aboutReq.About
 	}
 
-	// Парсинг шаблона и передача данных в него
 	lp := filepath.Join("public", "html", "profil.html")
 	tmpl, err := template.ParseFiles(lp)
 	if err != nil {
@@ -276,9 +271,8 @@ func (a app) MainPage(rw http.ResponseWriter, r *http.Request, p httprouter.Para
 		return
 	}
 
-	// ... (можешь подготовить какие-то данные для передачи в шаблон)
 
-	err = tmpl.ExecuteTemplate(rw, "mainpage", nil) // Передача данных в шаблон
+	err = tmpl.ExecuteTemplate(rw, "mainpage", nil)
 	if err != nil {
 		http.Error(rw, err.Error(), http.StatusBadRequest)
 		return
@@ -293,7 +287,6 @@ func (a app) Purchase(rw http.ResponseWriter, r *http.Request, p httprouter.Para
 		return
 	}
 
-	// ... (можешь подготовить какие-то данные для передачи в шаблон)
 
 	err = tmpl.ExecuteTemplate(rw, "purchase", nil)
 	if err != nil {

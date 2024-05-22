@@ -45,7 +45,7 @@
       padding: 35px 20px;
     }
 
-    /* CSS for main element */
+    /* MAIN */
     .intro {
       display: flex;
       flex-direction: column;
@@ -152,7 +152,7 @@
       margin: 10px 0;
     }
 
-    /* CSS for footer */
+    /* FOOTER */
     .footer {
       display: flex;
       justify-content: space-between;
@@ -222,15 +222,13 @@
         margin-top: 40px;
     }
 
-    /* Стили для profile-picture */
     .profile-picture img {
-        width: 150px; /* Регулируйте размер фотографии профиля */
+        width: 150px; 
         height: 150px;
-        border-radius: 50%; /* Делает изображение круглым */
+        border-radius: 50%; 
         object-fit: cover;
     }
 
-    /* Стили для user-details */
     .user-details {
         text-align: left;
         max-width: 400px;
@@ -330,7 +328,6 @@
                   document.getElementById('editProfileArea').style.display = 'none';
                   document.getElementById('aboutText').style.display = 'block';
               } else {
-                  // Обработать ошибку сохранения
               }
           })
           .catch(error => {
@@ -351,7 +348,6 @@
                   // Перезагрузить страницу после успешного сохранения
                   window.location.reload();
               } else {
-                  // Обработать ошибку сохранения
               }
           })
           .catch(error => {

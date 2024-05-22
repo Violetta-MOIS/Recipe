@@ -16,7 +16,6 @@ func InitDBConn(ctx context.Context, host, port, user, password, dbname string) 
 		return
 	}
 
-	// Определение параметров пула подключений (если нужно)
 
 	dbpool, err = pgxpool.ConnectConfig(ctx, cfg)
 	if err != nil {
